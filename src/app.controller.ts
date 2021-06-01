@@ -1,6 +1,14 @@
-import { Body, Controller, Get, NotFoundException, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
-import { User } from './user/user.model';
+import { CreateHighlightDto } from './dto/createHighlightDto';
+
+interface resData {
+  highlightId: number;
+  userId: number;
+  pageId: number;
+  colorHex: string;
+  text: string;
+}
 
 @Controller()
 export class AppController {
@@ -12,20 +20,9 @@ export class AppController {
   }
 
   @Post()
-  async createHighlight(@Body() CreateHighlightDto): Promise<User> {
-    // 유저확인
-    const checkUser = await User.findOne({
-      where: { id: CreateHighlightDto.userId },
-    });
-    if (!checkUser) {
-      throw new NotFoundException(
-        `User with id: ${CreateHighlightDto.userId} not found`,
-      );
-    }
-    // Url create or find
-    // colorHex 확인 후 colorId 넣기
-    // text 넣기
-
-    return checkUser;
+  createHighlight(
+    @Body() createHighlightDto: CreateHighlightDto,
+  ): Promise<resData> {
+    return this.appService.create(createHighlightDto);
   }
 }
