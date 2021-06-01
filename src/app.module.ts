@@ -8,9 +8,8 @@ import { UserModule } from './user/user.module';
 @Module({
   imports: [
     SequelizeModule.forRoot({
-      dialect: 'postgres',
+      dialect: 'mysql',
       host: 'localhost',
-      port: 5432,
       username: 'root',
       password: null,
       database: 'liner_nest',
