@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Users', {
+    return queryInterface.createTable('Themes', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -10,12 +10,12 @@ module.exports = {
         unique: true,
         primaryKey: true,
       },
-      userId: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       theme: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      colorHex: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       createdAt: {
@@ -30,6 +30,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Users');
+    return queryInterface.dropTable('Themes');
   },
 };
