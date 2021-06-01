@@ -2,12 +2,12 @@ import { Column, Model, Table, HasMany } from 'sequelize-typescript';
 import { Highlight } from 'src/highlight/highlight.model';
 
 @Table
-export class User extends Model<User> {
-  @Column
-  userId: string;
-
+export class Theme extends Model<Theme> {
   @Column
   theme: number;
+
+  @Column
+  colorHex: string;
 
   @HasMany(() => Highlight)
   highlights: Highlight[];
