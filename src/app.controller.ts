@@ -1,6 +1,14 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { AppService } from './app.service';
-import { CreateHighlightDto } from './dto/createHighlightDto';
+import { CreateHighlightDto, UpdateHighlightDto } from './dto/HighlightDto';
 
 interface resData {
   highlightId: number;
@@ -24,5 +32,27 @@ export class AppController {
     @Body() createHighlightDto: CreateHighlightDto,
   ): Promise<resData> {
     return this.appService.create(createHighlightDto);
+  }
+
+  @Patch()
+  updateHighlight(
+    @Body() updateHighlightDto: UpdateHighlightDto,
+  ): Promise<resData> {
+    return this.appService.update(updateHighlightDto);
+  }
+
+  // http://localhost:3000/highlights?userId=1&pageUrl=naver.com&pageId=123 이면 123 우선
+  @Get('highlights')
+  readHighlights(
+    @Query('userId') userId: string,
+    @Query('pageUrl') pageUrl?: string,
+    @Query('pageId') pageId?: string,
+  ) {
+    return this.appService.readhighlights(userId, pageId, pageUrl);
+  }
+
+  @Get(':userId')
+  readAll(@Param('userId') userId: string) {
+    return this.appService.readAll(userId);
   }
 }

@@ -1,4 +1,10 @@
-import { Column, Model, Table, ForeignKey } from 'sequelize-typescript';
+import {
+  Column,
+  Model,
+  Table,
+  ForeignKey,
+  BelongsTo,
+} from 'sequelize-typescript';
 import { Page } from 'src/page/page.model';
 import { Theme } from 'src/theme/theme.model';
 import { User } from 'src/user/user.model';
@@ -13,6 +19,9 @@ export class Highlight extends Model {
 
   @Column
   text: string;
+
+  @BelongsTo(() => Theme)
+  themeData: number;
 
   @ForeignKey(() => Theme)
   colorId: number;
