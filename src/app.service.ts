@@ -172,8 +172,10 @@ export class AppService {
           'colorHex',
           highlight.getDataValue('themeData').getDataValue('colorHex'),
         );
-        // delete highlight['themeData']; // id 랑 themeData 지우고싶음
-        return highlight;
+        const json = highlight.toJSON();
+        delete json['themeData'];
+        delete json['id'];
+        return json;
       });
       return data;
     } else if (pageUrl) {
@@ -198,7 +200,10 @@ export class AppService {
           'colorHex',
           highlight.getDataValue('themeData').getDataValue('colorHex'),
         );
-        return highlight;
+        const json = highlight.toJSON();
+        delete json['themeData'];
+        delete json['id'];
+        return json;
       });
       return data;
     } else {
@@ -253,8 +258,10 @@ export class AppService {
           'colorHex',
           highlight.getDataValue('themeData').getDataValue('colorHex'),
         );
-        // delete highlight['themeData']; // id 랑 themeData 지우고싶음
-        return highlight;
+        const json = highlight.toJSON();
+        delete json['themeData'];
+        delete json['id'];
+        return json;
       });
       allData.push({
         pageId: urls.getDataValue('id'),
@@ -287,6 +294,8 @@ export class AppService {
     });
     if (!checkUser) {
       throw new NotFoundException(`User with id: ${userId} not found`);
+    } else if (themeId < 0 || themeId > 3) {
+      throw new NotFoundException(`Theme with id: ${themeId} not found`);
     }
     const beforeTheme = checkUser.getDataValue('theme');
     // 테마변경
