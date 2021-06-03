@@ -1,3 +1,26 @@
+# liner-nest
+
+- 목적 : Typescript + NestJS 직접 활용하기
+- 설명 : 라이너 기업과제 nestJS 로 리팩토링 하기
+- 스택 : Javascript, Typescript, NestJS, sequelizeORM, MySQL
+- 짧은 후기
+  - nestJS + sequelize + mysql 연결을 할 수 있게 되었다.
+  - 처음으로 유닛테스트를 작성하고 진행해봤다.
+  - ts 와 nestJS 를 공부하고 활용해보면서, 새로운 스택을 배우는 것에 대한 자신감이 생겼다.
+
+- 블로깅 : [Liner/ NestJS로 리팩토링](https://velog.io/@flobeeee/Liner-NestJS%EB%A1%9C-%EB%A6%AC%ED%8C%A9%ED%86%A0%EB%A7%81)
+- 에러 블로깅
+    -  [typescript sequelize / create error](https://velog.io/@flobeeee/typescript-sequelize-create-error)
+
+    - [nestJS / 'cannot find module' when test](https://velog.io/@flobeeee/nestJS-cannot-find-module-when-test)
+
+    -  [sequelize/ 로 받아온 데이터 키, 값 지우기](https://velog.io/@flobeeee/sequelize-%EB%A1%9C-%EB%B0%9B%EC%95%84%EC%98%A8-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%82%A4-%EA%B0%92-%EC%A7%80%EC%9A%B0%EA%B8%B0)
+
+    -  [sequelize /유닛테스트 진행시 데이터베이스 연결](https://velog.io/@flobeeee/sequelize-%EC%9C%A0%EB%8B%9B%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%A7%84%ED%96%89%EC%8B%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%97%B0%EA%B2%B0)
+
+  
+---
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
