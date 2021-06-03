@@ -1,6 +1,24 @@
-import { Body, Controller, Get, NotFoundException, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { AppService } from './app.service';
-import { User } from './user/user.model';
+import { CreateHighlightDto, UpdateHighlightDto } from './dto/HighlightDto';
+
+interface resData {
+  highlightId: number;
+  userId: number;
+  pageId: number;
+  colorHex: string;
+  text: string;
+}
 
 @Controller()
 export class AppController {
@@ -12,20 +30,47 @@ export class AppController {
   }
 
   @Post()
-  async createHighlight(@Body() CreateHighlightDto): Promise<User> {
-    // 유저확인
-    const checkUser = await User.findOne({
-      where: { id: CreateHighlightDto.userId },
-    });
-    if (!checkUser) {
-      throw new NotFoundException(
-        `User with id: ${CreateHighlightDto.userId} not found`,
-      );
-    }
-    // Url create or find
-    // colorHex 확인 후 colorId 넣기
-    // text 넣기
+  createHighlight(
+    @Body() createHighlightDto: CreateHighlightDto,
+  ): Promise<resData> {
+    return this.appService.create(createHighlightDto);
+  }
 
-    return checkUser;
+  @Patch()
+  updateHighlight(
+    @Body() updateHighlightDto: UpdateHighlightDto,
+  ): Promise<resData> {
+    return this.appService.update(updateHighlightDto);
+  }
+
+  // http://localhost:3000/highlights?userId=1&pageUrl=naver.com&pageId=123 이면 123 우선
+  @Get('highlights')
+  readHighlights(
+    @Query('userId') userId: string,
+    @Query('pageUrl') pageUrl?: string,
+    @Query('pageId') pageId?: string,
+  ) {
+    return this.appService.readhighlights(userId, pageId, pageUrl);
+  }
+
+  @Get(':userId')
+  readAll(@Param('userId') userId: string) {
+    return this.appService.readAll(userId);
+  }
+
+  @Delete(':userId/:highlightId')
+  deleteHighlight(
+    @Param('userId') userId: string,
+    @Param('highlightId') highlightId: string,
+  ) {
+    return this.appService.delete(userId, highlightId);
+  }
+
+  @Put(':userId/:themeId')
+  changeTheme(
+    @Param('userId') userId: string,
+    @Param('themeId') themeId: string,
+  ) {
+    return this.appService.changeTheme(userId, themeId);
   }
 }

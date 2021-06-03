@@ -2,15 +2,15 @@ import {
   Column,
   Model,
   Table,
-  BelongsTo,
   ForeignKey,
+  BelongsTo,
 } from 'sequelize-typescript';
 import { Page } from 'src/page/page.model';
 import { Theme } from 'src/theme/theme.model';
 import { User } from 'src/user/user.model';
 
 @Table
-export class Highlight extends Model<Highlight> {
+export class Highlight extends Model {
   @ForeignKey(() => User)
   userId: number;
 
@@ -19,6 +19,9 @@ export class Highlight extends Model<Highlight> {
 
   @Column
   text: string;
+
+  @BelongsTo(() => Theme)
+  themeData: number;
 
   @ForeignKey(() => Theme)
   colorId: number;
