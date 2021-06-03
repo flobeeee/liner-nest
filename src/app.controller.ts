@@ -1,10 +1,12 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
   Post,
+  Put,
   Query,
 } from '@nestjs/common';
 import { AppService } from './app.service';
@@ -54,5 +56,21 @@ export class AppController {
   @Get(':userId')
   readAll(@Param('userId') userId: string) {
     return this.appService.readAll(userId);
+  }
+
+  @Delete(':userId/:highlightId')
+  deleteHighlight(
+    @Param('userId') userId: string,
+    @Param('highlightId') highlightId: string,
+  ) {
+    return this.appService.delete(userId, highlightId);
+  }
+
+  @Put(':userId/:themeId')
+  changeTheme(
+    @Param('userId') userId: string,
+    @Param('themeId') themeId: string,
+  ) {
+    return this.appService.changeTheme(userId, themeId);
   }
 }

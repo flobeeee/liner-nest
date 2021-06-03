@@ -265,4 +265,60 @@ export class AppService {
     }
     return allData;
   }
+
+  async delete(userId, highlightId) {
+    if (userId && highlightId) {
+      await Highlight.destroy({
+        where: {
+          id: highlightId,
+          userId: userId,
+        },
+      });
+      return 'OK';
+    } else {
+      throw new BadRequestException('required userId or highlightId');
+    }
+  }
+
+  async changeTheme(userId, themeId) {
+    // 유저확인
+    const checkUser = await User.findOne({
+      where: { id: userId },
+    });
+    if (!checkUser) {
+      throw new NotFoundException(`User with id: ${userId} not found`);
+    }
+    const beforeTheme = checkUser.getDataValue('theme');
+    // 테마변경
+    await User.update(
+      {
+        theme: themeId,
+      },
+      {
+        where: {
+          id: userId,
+        },
+      },
+    );
+    const color = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ];
+    // 색 변경
+    for (let i = 0; i < 3; i++) {
+      await Highlight.update(
+        {
+          colorId: color[themeId - 1][i],
+        },
+        {
+          where: {
+            userId: userId,
+            colorId: color[beforeTheme - 1][i],
+          },
+        },
+      );
+    }
+    return 'OK';
+  }
 }
