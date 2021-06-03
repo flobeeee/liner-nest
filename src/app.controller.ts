@@ -46,30 +46,30 @@ export class AppController {
   // http://localhost:3000/highlights?userId=1&pageUrl=naver.com&pageId=123 이면 123 우선
   @Get('highlights')
   readHighlights(
-    @Query('userId') userId: string,
+    @Query('userId') userId: number,
     @Query('pageUrl') pageUrl?: string,
-    @Query('pageId') pageId?: string,
+    @Query('pageId') pageId?: number,
   ) {
     return this.appService.readhighlights(userId, pageId, pageUrl);
   }
 
   @Get(':userId')
-  readAll(@Param('userId') userId: string) {
+  readAll(@Param('userId') userId: number) {
     return this.appService.readAll(userId);
   }
 
   @Delete(':userId/:highlightId')
   deleteHighlight(
-    @Param('userId') userId: string,
-    @Param('highlightId') highlightId: string,
+    @Param('userId') userId: number,
+    @Param('highlightId') highlightId: number,
   ) {
     return this.appService.delete(userId, highlightId);
   }
 
   @Put(':userId/:themeId')
   changeTheme(
-    @Param('userId') userId: string,
-    @Param('themeId') themeId: string,
+    @Param('userId') userId: number,
+    @Param('themeId') themeId: number,
   ) {
     return this.appService.changeTheme(userId, themeId);
   }
