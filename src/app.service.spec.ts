@@ -40,13 +40,13 @@ describe('LinerService', () => {
   });
 
   describe('readhighlights', () => {
-    it('should return two highlights', async () => {
+    it('should return 3 highlights', async () => {
       const result = await service.readhighlights(1, 1, 'test');
-      expect(result.length).toEqual(2);
+      expect(result.length).toEqual(3);
     });
-    it('should return two highlights', async () => {
+    it('should return 3 highlights', async () => {
       const result = await service.readhighlights(1, null, 'www.naver.com');
-      expect(result.length).toEqual(2);
+      expect(result.length).toEqual(3);
     });
     it('should return a 404', async () => {
       try {

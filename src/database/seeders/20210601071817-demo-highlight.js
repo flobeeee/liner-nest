@@ -45,6 +45,22 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          userId: 2,
+          pageId: 2,
+          text: '유저 2 유튜브 텍스트1입니다. 테마2번입니다',
+          colorId: 4,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          userId: 2,
+          pageId: 2,
+          text: '유저 2유튜브 텍스트2입니다. 테마2번입니다',
+          colorId: 4,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {},
     );
